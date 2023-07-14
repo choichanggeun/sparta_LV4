@@ -5,7 +5,8 @@ const auth = require('../middlewares/auth');
 
 
 router.route('/:postId')
-  .get(auth, async (req, res) => {
+// 댓글 조회   
+.get(auth, async (req, res) => {
     const postId = req.params.postId;
 
     const comments = await Comments.findAll({ 
@@ -26,7 +27,7 @@ router.route('/:postId')
     } else {
       res.json({ message: "댓글이 없습니다." })
     }
-
+      // 댓글 등록
   })
   .post(auth, (req, res) => {
     const PostId = req.params.postId;
@@ -39,6 +40,7 @@ router.route('/:postId')
       res.json({ message: '댓글이 작성되었습니다.' })
     }
   })
+  // 댓글 수정 
 
 router.route('/:commentId')
   .put(auth, async (req, res) => {
